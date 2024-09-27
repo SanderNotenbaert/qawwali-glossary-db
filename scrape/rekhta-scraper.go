@@ -19,7 +19,9 @@ func Sufinama(domain string, urlList []string, visitedUrls []string) ([]translat
 	// instantiate a new collector object
 	c := colly.NewCollector(
 		colly.AllowedDomains(domain),
+		colly.Async(true),
 	)
+	c.Limit(&colly.LimitRule{DomainGlob: "*", Parallelism: 20})
 	c.AllowURLRevisit = false
 
 	c.OnHTML(`div.contentListBody.contentLoadMoreSection`, func(el *colly.HTMLElement) {
@@ -61,6 +63,7 @@ func Sufinama(domain string, urlList []string, visitedUrls []string) ([]translat
 	for _, url := range urlList {
 
 		c.Visit(url)
+		c.Wait()
 	}
 	return words, newUrls
 }

@@ -41,6 +41,7 @@ func Rekhta(word CountedWord) ([]TranslatedWord, UntranslatedWord) {
 	for _, t := range r.R {
 		var translations []string
 		for _, translation := range t.Translation {
+			translation.Meaning = strings.ReplaceAll(translation.Meaning, `"`, "'")
 			translations = append(translations, fmt.Sprintf(`"%s"`, translation.Meaning))
 		}
 		words = append(words, TranslatedWord{
