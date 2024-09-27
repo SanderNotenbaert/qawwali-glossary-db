@@ -32,7 +32,7 @@ func Rekhta(word CountedWord) ([]TranslatedWord, UntranslatedWord) {
 	// Make POST request with JSON data
 	r, err := postWithRetry("https://world.rekhta.org/api/v2/shayari/GetGroupWordMeaning?lang=1", dataType, bytes.NewBuffer(jsonData))
 	if (err == nil) && (len(r.R) == 0) {
-		fmt.Println("No translation found")
+		// fmt.Println("No translation found")
 		return []TranslatedWord{}, UntranslatedWord{Word: word.Text, Word_count: count, Occurrences: word.Occurrences}
 	}
 
@@ -78,7 +78,9 @@ func postWithRetry(url string, dataType string, data io.Reader) (rekhtaResponse,
 			var r rekhtaResponse
 			err = json.Unmarshal(body, &r)
 			if err != nil {
-				panic(err)
+				// panic(err)
+				// fmt.Println(err)
+				return rekhtaResponse{}, err
 			}
 			if len(r.R) < 1 {
 				// err = fmt.Errorf("no translation found")

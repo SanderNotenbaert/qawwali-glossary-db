@@ -1,4 +1,4 @@
-module qawwali-syllabus
+module qawwali-glossary-db
 
 go 1.23
 
@@ -8,6 +8,7 @@ require (
 	github.com/avast/retry-go/v4 v4.6.0
 	github.com/gocolly/colly v1.2.0
 	github.com/mattn/go-sqlite3 v1.14.23
+	github.com/schollz/progressbar/v3 v3.16.0
 )
 
 require (
@@ -20,9 +21,13 @@ require (
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/kennygrant/sanitize v1.2.4 // indirect
+	github.com/mitchellh/colorstring v0.0.0-20190213212951-d06e56a500db // indirect
+	github.com/rivo/uniseg v0.4.7 // indirect
 	github.com/saintfish/chardet v0.0.0-20230101081208-5e3ef4b5456d // indirect
 	github.com/temoto/robotstxt v1.1.2 // indirect
 	golang.org/x/net v0.29.0 // indirect
+	golang.org/x/sys v0.25.0 // indirect
+	golang.org/x/term v0.24.0 // indirect
 	golang.org/x/text v0.18.0 // indirect
 	google.golang.org/appengine v1.6.8 // indirect
 	google.golang.org/protobuf v1.26.0 // indirect

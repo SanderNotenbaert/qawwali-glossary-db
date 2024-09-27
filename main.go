@@ -3,12 +3,15 @@ package main
 import (
 	// "encoding/json"
 	"fmt"
-	"qawwali-syllabus/database"
-	"qawwali-syllabus/process"
-	"qawwali-syllabus/scrape"
-	"qawwali-syllabus/translate"
+	"qawwali-glossary-db/database"
+	"qawwali-glossary-db/process"
+	"qawwali-glossary-db/scrape"
+	"qawwali-glossary-db/translate"
+
 	// "qawwali-syllabus/utils"
 	"sync"
+
+	"github.com/schollz/progressbar/v3"
 )
 
 // var urlList = []string{"https://sufinama.org/poets/amir-khusrau/kalaam", "https://sufinama.org/poets/bulleh-shah/kaafi"}
@@ -16,13 +19,15 @@ import (
 // var urlList = []string{"https://sufinama.org/poets/amir-khusrau/kalaam"}
 // var urlList = []string{"https://sufinama.org/sufi-kalam/best-10-qawwalis-of-rumi"}
 // var urlList = []string{"https://sufinama.org/poets/kabir/pad"}
-var urlList = []string{
-	"https://sufinama.org/poets/kabir/raga-based-poetries",
-	"https://sufinama.org/poets/kabir/chaupaiyan",
-	"https://sufinama.org/poets/kabir/shabad",
-	"https://sufinama.org/poets/khwaja-ghulam-farid",
-	"https://sufinama.org/poets/baba-farid",
-}
+var urlList = []string{"https://sufinama.org/poets/sultan-bahu/kalaam"}
+
+// var urlList = []string{
+// 	"https://sufinama.org/poets/kabir/raga-based-poetries",
+// 	"https://sufinama.org/poets/kabir/chaupaiyan",
+// 	"https://sufinama.org/poets/kabir/shabad",
+// 	"https://sufinama.org/poets/khwaja-ghulam-farid",
+// 	"https://sufinama.org/poets/baba-farid",
+// }
 
 // var urlList = []string{"https://sufinama.org/sufi-kalam/best-10-kalams-of-shah-turab-ali-qalandar"}
 var domain = "sufinama.org"
@@ -45,8 +50,7 @@ func main() {
 	var translatedWords []interface{} //translate.TranslatedWord
 	var untranslatedWords []interface{}
 
-	//TODO: make concurrent
-
+	bar := progressbar.New(len(countedWords))
 	// for _, word := range countedWords {
 	// 	translatedWord, untranslatedWord := translate.Rekhta(word)
 	// 	if untranslatedWord.Word != "" {
@@ -82,6 +86,8 @@ func main() {
 			for _, wordInstance := range translatedWord {
 				translatedChan <- wordInstance
 			}
+			// Update the progress bar after each word is processed
+			bar.Add(1)
 		}(word)
 	}
 

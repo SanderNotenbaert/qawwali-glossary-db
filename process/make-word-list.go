@@ -3,10 +3,11 @@ package process
 import (
 	"bufio"
 	"fmt"
+	"qawwali-glossary-db/translate"
+
 	// "fmt"
 	"log"
 	"os"
-	"qawwali-syllabus/translate"
 	"regexp"
 	"sort"
 	"strings"
