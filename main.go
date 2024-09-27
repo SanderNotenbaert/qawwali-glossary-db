@@ -34,6 +34,9 @@ func main() {
 	//get translations on the collected words
 	var translatedWords []interface{} //translate.TranslatedWord
 	var untranslatedWords []interface{}
+
+	//TODO: make concurrent
+
 	for _, word := range countedWords {
 		translatedWord, untranslatedWord := translate.Rekhta(word)
 		if untranslatedWord.Word != "" {

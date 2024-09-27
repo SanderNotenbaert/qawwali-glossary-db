@@ -9,6 +9,7 @@ import (
 	"github.com/gocolly/colly"
 )
 
+//TODO: make concurrent?
 // initialize a data structure to keep the scraped data
 
 func Sufinama(domain string, urlList []string, visitedUrls []string) ([]translate.Word, []interface{}) {
