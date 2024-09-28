@@ -8,7 +8,6 @@ import (
 	"qawwali-glossary-db/scrape"
 	"qawwali-glossary-db/translate"
 
-	// "qawwali-syllabus/utils"
 	"sync"
 
 	"github.com/schollz/progressbar/v3"
